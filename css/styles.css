@@ -1,0 +1,11 @@
+* { box-sizing:border-box; margin:0; outline:none; padding:0; }
+
+body { background:#d9e0e7; color:#555; font:14px/20px 'Microsoft YaHei', Arial, Helvetica, sans-serif; }
+
+/**
+ * Frame
+ */
+body > .wrapper { position:relative; }
+body > .header-wrapper {}
+body > .main-wrapper {}
+body > .footer-wrapper {}
