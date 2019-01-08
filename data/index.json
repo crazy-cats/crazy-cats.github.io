@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Home",
+        "href": "#home"
+    },
+    {
+        "title": "Documentation",
+        "children": [
+            {
+                "title": "Setup",
+                "children": [
+                    {
+                        "title": "System Requirements",
+                        "href": "#system-requirements"
+                    }
+                ]
+            }
+        ]
+    }
+]

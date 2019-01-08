@@ -6,10 +6,15 @@ body { background:#fff; color:#555; font:14px/20px 'Microsoft YaHei', Arial, Hel
  * Frame
  */
 body > .wrapper { position:relative; }
-body > .wrapper > div { margin:0 auto; width:1000px; }
-body > .header-wrapper {}
-body > .main-wrapper {}
-body > .footer-wrapper {}
+body > .header-wrapper { height:50px; left:0; position:fixed; top:0; width:100%; z-index:3; }
+body > .header-wrapper .header {}
+body > .header-wrapper .header .logo { float:left; }
+body > .header-wrapper .header .main-menu { float:left; }
+body > .header-wrapper .header:after { clear:both; content:''; display:table; height:0; }
+body > .main-wrapper { position:relative; z-index:2; }
+body > .main-wrapper > .left { background:#F1F1F1; height:100%; left:0; position:fixed; top:50px; width:280px; }
+body > .main-wrapper > .main { margin:50px 0 0 280px; }
+body > .footer-wrapper { margin:0 0 0 280px; position:relative; z-index:3; }
 
 /**
  * Main menu

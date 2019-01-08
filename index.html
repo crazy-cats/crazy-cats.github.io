@@ -24,26 +24,29 @@
                 <div class="logo">
                     CrazyCat PHP Platform
                 </div>
-                <div class="main-menu">
-                    <ul>
-                        <li class="current"><a href="#home"><span>Home</span></a></li>
-                        <li><a href="#documentation"><span>Documentation</span></a></li>
-                    </ul>
-                </div>
+                <div class="main-menu"></div>
             </div>
         </div>
         <div class="wrapper main-wrapper">
+            <div class="left"></div>
             <div class="main"></div>
-            <script type="text/javascript">
-                require( [ 'jquery', 'markdown' ], function ( $ ) {
-                    
-                } );
-            </script>
         </div>
         <div class="wrapper footer-wrapper">
             <div class="footer">
                 <div class="copyright">&copy; 2019 CrazyCat</div>
             </div>
         </div>
+        <script type="text/javascript">
+            require( [ 'js/renderer', 'text!data/index.json' ], function( renderer, config ) {
+                renderer( {
+                    config: JSON.parse( config ),
+                    elMenuBox: '.main-menu',
+                    elIndexBox: '.main-wrapper > .left',
+                    elMainBox: '.main-wrapper > .main',
+                    githubOwner: 'crazy-cats',
+                    githubRepository: 'crazy-cats.github.io'
+                } );
+            } );
+        </script>
     </body>
 </html>
