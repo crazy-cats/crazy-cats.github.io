@@ -1,11 +1,23 @@
 * { box-sizing:border-box; margin:0; outline:none; padding:0; }
 
-body { background:#d9e0e7; color:#555; font:14px/20px 'Microsoft YaHei', Arial, Helvetica, sans-serif; }
+body { background:#fff; color:#555; font:14px/20px 'Microsoft YaHei', Arial, Helvetica, sans-serif; }
 
 /**
  * Frame
  */
 body > .wrapper { position:relative; }
+body > .wrapper > div { margin:0 auto; width:1000px; }
 body > .header-wrapper {}
 body > .main-wrapper {}
 body > .footer-wrapper {}
+
+/**
+ * Main menu
+ */
+.main-menu > ul li { list-style:none; position:relative; }
+.main-menu > ul li a { display:block; text-decoration:none; }
+.main-menu > ul li a span { display:block; }
+.main-menu > ul li ul { position:absolute; }
+.main-menu > ul > li { float:left; } /* level 1 */
+.main-menu > ul > li > a { padding:5px 10px; }
+.main-menu > ul:after { clear:both; content:''; display:table; height:0; }

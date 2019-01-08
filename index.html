@@ -6,22 +6,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
         <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
-        <base href="https://crazy-cats.github.io/" />
+        <script src="js/require.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            require.config( {
+                waitSeconds: 0,
+                paths: {
+                    jquery: 'js/jquery',
+                    text: 'js/text',
+                    markdown: 'js/showdown.min'
+                }
+            } );
+        </script>
     </head>
     <body>
         <div class="wrapper header-wrapper">
             <div class="header">
-                CrazyCat PHP Platform
+                <div class="logo">
+                    CrazyCat PHP Platform
+                </div>
+                <div class="main-menu">
+                    <ul>
+                        <li class="current"><a href="#home"><span>Home</span></a></li>
+                        <li><a href="#documentation"><span>Documentation</span></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="wrapper main-wrapper">
-            <div class="main">
-                
-            </div>
+            <div class="main"></div>
+            <script type="text/javascript">
+                require( [ 'jquery', 'markdown' ], function ( $ ) {
+                    
+                } );
+            </script>
         </div>
         <div class="wrapper footer-wrapper">
             <div class="footer">
-                
+                <div class="copyright">&copy; 2019 CrazyCat</div>
             </div>
         </div>
     </body>
