@@ -56,6 +56,9 @@ define( [
 
         var markdownConverter = new markdown.Converter();
 
+        /**
+         * @param {boolean} flag
+         */
         var loading = function( flag ) {
             if ( flag === false ) {
                 loader.hide();
@@ -79,13 +82,12 @@ define( [
         var getIndexBoxHtml = function( data ) {
             var html = '<ul>';
             for ( var i = 0; i < data.length; i++ ) {
-                html += '<li>';
-                if ( data[i].children && data[i].children.length > 0 ) {
-                    html += '<a href="javascript:;"><span>' + data[i].title + '</span></a>' +
-                            getIndexBoxHtml( data[i].children );
-                } else {
-                    html += '<a href="' + data[i].href + '"><span>' + data[i].title + '</span></a>';
-                }
+                html += '<li>' +
+                        '<a href="' + (data[i].href || 'javascript:;') + '"' +
+                        ' id="menu-' + encodeHtml( data[i].name.replace( /\//g, '-' ) ) + '"' +
+                        ' data-identifier="' + encodeHtml( data[i].name ) + '">' +
+                        '<span>' + data[i].title + '</span></a>' +
+                        ((data[i].children && data[i].children.length > 0) ? getIndexBoxHtml( data[i].children ) : '');
                 html += '</li>';
             }
             html += '</ul>';
@@ -93,10 +95,27 @@ define( [
         };
 
         /**
+         * @param {string} path
+         */
+        var updateMenuBox = function( path ) {
+            elMenuBox.find( '#menu-' + path.split( '/' )[0] )
+                    .closest( 'li' ).addClass( 'current' )
+                    .siblings().removeClass( 'current' );
+        };
+
+        /**
          * @param {object} data
          */
-        var updateNavBox = function( data ) {
-            elNavBox.html( getIndexBoxHtml( data ) );
+        var updateNavBox = function( path ) {
+            var data = elMenuBox.find( '#menu-' + path.split( '/' )[0] ).data( 'children' );
+            if ( data ) {
+                elNavBox.html( getIndexBoxHtml( data ) );
+            } else {
+                elNavBox.html( '' );
+            }
+            elNavBox.find( '#menu-' + path.replace( /\//g, '-' ) )
+                    .closest( 'li' ).addClass( 'current' )
+                    .siblings().removeClass( 'current' );
         };
 
         /**
@@ -111,15 +130,10 @@ define( [
          * @param {function} result
          */
         var updateStage = function( path, content ) {
+            updateMenuBox( path );
+            updateNavBox( path );
             updateMainBox( content );
         };
-
-        var parsePath = createPromiseCaches( function( path, defer ) {
-            loading( true );
-            $.get( 'data/' + path + '.md' ).then( defer.resolve, defer.reject ).always( function() {
-                loading( false );
-            } );
-        } );
 
         var buildNavBox = function() {
             elNavBox.append( '<div class="box"></div>' ).mCustomScrollbar( {theme: 'minimal-dark'} );
@@ -129,17 +143,21 @@ define( [
         var buildMenuBox = function() {
             var html = '<ul>';
             for ( var i = 0; i < opts.config.length; i++ ) {
-                html += '<li><a';
+                html += '<li>' +
+                        '<a href="' + (opts.config[i].href || 'javascript:;') + '"' +
+                        ' id="menu-' + encodeHtml( opts.config[i].name.replace( /\//g, '-' ) ) + '"' +
+                        ' data-identifier="' + encodeHtml( opts.config[i].name ) + '"';
                 if ( opts.config[i].children ) {
                     html += ' data-children="' + encodeHtml( JSON.stringify( opts.config[i].children ) ) + '"';
                 }
-                html += ' href="' + (opts.config[i].href ? opts.config[i].href : 'javascript:;') + '"><span>' + opts.config[i].title + '</span></a></li>';
+                html += '><span>' + opts.config[i].title + '</span></a></li>';
             }
             html += '</ul>';
             elMenuBox.html( html ).on( 'click', 'a', function() {
-                var children = $( this ).data( 'children' );
+                var el = $( this );
+                var children = el.data( 'children' );
                 if ( children ) {
-                    updateNavBox( children );
+                    updateNavBox( el.data( 'identifier' ) );
                 }
             } );
         };
@@ -148,6 +166,13 @@ define( [
             loader = $( '<div class="loader"></loader>' );
             body.append( loader );
         };
+
+        var parsePath = createPromiseCaches( function( path, defer ) {
+            loading( true );
+            $.get( 'data/' + path + '.md' ).then( defer.resolve, defer.reject ).always( function() {
+                loading( false );
+            } );
+        } );
 
         buildMenuBox();
         buildNavBox();

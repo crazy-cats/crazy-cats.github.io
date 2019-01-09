@@ -1,19 +1,24 @@
 [
     {
+        "name": "home",
         "title": "Home",
         "href": "#home"
     },
     {
+        "name": "documentation",
         "title": "Documentation",
         "children": [
             {
+                "name": "documentation/setup",
                 "title": "Setup",
                 "children": [
                     {
+                        "name": "documentation/setup/system-requirements",
                         "title": "System Requirements",
                         "href": "#documentation/setup/system-requirements"
                     },
                     {
+                        "name": "documentation/setup/install-guide",
                         "title": "Install Guide",
                         "href": "#documentation/setup/install-guide"
                     }

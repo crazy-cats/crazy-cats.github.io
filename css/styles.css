@@ -45,6 +45,8 @@ body > .footer-wrapper .footer .copyright { font-size:12px; text-align:right; }
 .nav-menu .box > ul > li li > a { padding:8px 18px; }
 .nav-menu .box > ul > li li > a > span { color:#555; font-style:italic; }
 .nav-menu .box > ul > li li > a:hover { background:#e5f8f9; }
+.nav-menu .box > ul > li li.current > a span { font-weight:bold; }
+
 
 /**
  * Index menu
