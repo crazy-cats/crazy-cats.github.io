@@ -84,7 +84,7 @@ define( [
         /**
          * @param {object} data
          */
-        var updateIndexBox = function( data ) {
+        var updateNavBox = function( data ) {
             elNavBox.html( getIndexBoxHtml( data ) );
         };
 
@@ -99,8 +99,9 @@ define( [
          * @param {string} path
          * @param {function} result
          */
-        var updateStage = function( path, result ) {
-            updateMainBox( result );
+        var updateStage = function( path, content ) {
+            console.log( path );
+            updateMainBox( content );
         };
 
         var parsePath = createPromiseCaches( function( path, defer ) {
@@ -118,11 +119,9 @@ define( [
             }
             html += '</ul>';
             elMenuBox.html( html ).on( 'click', 'a', function() {
-                var el = $( this );
-                el.closest( 'li' ).addClass( 'current' ).siblings().removeClass( 'current' );
-                var children = el.data( 'children' );
+                var children = $( this ).data( 'children' );
                 if ( children ) {
-                    updateIndexBox( children );
+                    updateNavBox( children );
                 }
             } );
         };
