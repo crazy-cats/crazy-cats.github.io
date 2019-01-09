@@ -7,15 +7,15 @@ body { background:#fff; color:#555; font:14px/20px 'Microsoft YaHei', Arial, Hel
  */
 body > .wrapper { position:relative; }
 body > .header-wrapper { height:50px; left:0; position:fixed; top:0; width:100%; z-index:3; }
-body > .header-wrapper .header { background:#f1f1f1; }
-body > .header-wrapper .header .logo { background:#f4f4f4; float:left; padding:15px; text-align:center; text-transform:uppercase; width:280px; }
-body > .header-wrapper .header .main-menu { float:left; margin-left:35px; }
+body > .header-wrapper .header { background:#f1f1f1; border-bottom:1px solid #e2e7eb; }
+body > .header-wrapper .header .logo { background:#f4f4f4; border-right:1px solid #e2e7eb; float:left; padding:15px; text-align:center; text-transform:uppercase; width:280px; }
+body > .header-wrapper .header .main-menu { float:left; margin-left:25px; }
 body > .header-wrapper .header:after { clear:both; content:''; display:table; height:0; }
 body > .main-wrapper { position:relative; z-index:2; }
-body > .main-wrapper > .left { background:#f9f9f9; height:calc( 100% - 50px ); left:0; position:fixed; top:50px; width:280px; }
-body > .main-wrapper > .main { margin:50px 0 0 280px; padding:30px 20px 70px 50px; }
+body > .main-wrapper > .left { background:#f9f9f9; border-right:1px solid #e2e7eb; height:calc( 100% - 50px ); left:0; position:fixed; top:50px; width:280px; }
+body > .main-wrapper > .main { margin:50px 0 0 280px; padding:5px 0 70px 40px; width:calc( 100% - 500px ); }
 body > .main-wrapper > .main .main-contents {}
-body > .footer-wrapper { margin:0 0 0 280px; position:relative; z-index:3; }
+body > .footer-wrapper { margin:0 0 0 280px; position:relative; z-index:1; }
 body > .footer-wrapper .footer { padding:20px 20px 30px; }
 body > .footer-wrapper .footer .copyright { font-size:12px; text-align:right; }
 
@@ -34,35 +34,42 @@ body > .footer-wrapper .footer .copyright { font-size:12px; text-align:right; }
 /**
  * Left menu
  */
-.nav-menu { margin:10px 0 0; height:calc( 100% - 10px ); }
-.nav-menu .box > ul li { list-style:none; position:relative; }
+.nav-menu { margin:10px -1px 0 0; height:calc( 100% - 10px ); }
+.nav-menu .box > ul li { list-style:none; }
 .nav-menu .box > ul li a { display:block; text-decoration:none; }
 .nav-menu .box > ul li a span { display:block; }
-.nav-menu .box > ul > li { border-bottom:1px solid #e2e7eb; } /* level 1 */
-.nav-menu .box > ul > li > a { border-bottom:1px solid #e2e7eb; padding:12px 18px; }
+.nav-menu .box > ul > li > a { border-bottom:1px solid #e2e7eb; border-right:1px solid #e2e7eb; padding:12px 18px; } /* level 1 */
 .nav-menu .box > ul > li > a > span { color:#555; }
-.nav-menu .box > ul > li ul { background:#fff; padding:7px 0 10px; } /* level 2 */
-.nav-menu .box > ul > li li > a { padding:8px 18px; }
+.nav-menu .box > ul > li li > a { background:#fff; border-bottom:1px solid #e2e7eb; border-right:1px solid #e2e7eb; padding:8px 18px 8px 30px; } /* level 2 */
 .nav-menu .box > ul > li li > a > span { color:#555; font-style:italic; }
 .nav-menu .box > ul > li li > a:hover { background:#e5f8f9; }
+.nav-menu .box > ul > li li.current > a { background:#fff; border-right:0; cursor:default; }
 .nav-menu .box > ul > li li.current > a span { font-weight:bold; }
-
 
 /**
  * Index menu
  */
-.index-menu {}
+.index-menu { border:1px solid #e2e7eb; position:fixed; right:10px; top:60px; width:200px; }
+.index-menu:before { background:#fff; bottom:0; content:''; display:block; left:0; opacity:.6; position:absolute; right:0; top:0; }
+.index-menu ul { position:relative; }
+.index-menu ul li { list-style:none; }
+.index-menu ul li a { border-bottom:1px solid #e2e7eb; display:block; text-decoration:none; }
+.index-menu ul li a span { display:block; }
+.index-menu ul li a span.title { color:#555; padding:5px 8px 8px; }
+.index-menu ul li a span.progress { width:100%; }
+.index-menu ul li a span.progress span { background:#e5f8f9; height:5px; }
 
 /**
  * Markdown contents
  */
 .markdown {}
-.markdown h1 {}
-.markdown h2 {}
-.markdown h3 {}
-.markdown p {}
+.markdown h1 { font-size:2rem; font-weight:normal; line-height:2.4rem; margin:2rem 0 1.2rem; }
+.markdown h2 { font-size:1.5rem; font-weight:normal; line-height:2rem; margin:1.5rem 0 1rem; }
+.markdown h3 { font-size:1rem; font-weight:normal; line-height:1.5rem; margin:1rem 0 1rem; }
+.markdown p { margin:0 0 1rem; }
 .markdown code {}
-.markdown pre code {}
+.markdown pre { background:#e5f8f9; margin:0 0 1rem; padding:10px 20px; }
+.markdown pre code { font-family:Consolas; }
 .markdown ul {}
 .markdown ul li {}
 .markdown ol {}

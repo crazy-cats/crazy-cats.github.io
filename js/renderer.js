@@ -1,7 +1,8 @@
 define( [
     'jquery',
     'markdown',
-    'scrollbar'
+    'scrollbar',
+    'js/reading-progress'
 ], function( $, markdown ) {
 
     /**
@@ -104,7 +105,7 @@ define( [
         };
 
         /**
-         * @param {object} data
+         * @param {string} path
          */
         var updateNavBox = function( path ) {
             var data = elMenuBox.find( '#menu-' + path.split( '/' )[0] ).data( 'children' );
@@ -122,12 +123,12 @@ define( [
          * @param {string} content
          */
         var updateMainBox = function( content ) {
-            elMainBox.html( '<div class="markdown">' + markdownConverter.makeHtml( content ) + '</div>' );
+            elMainBox.html( '<div class="markdown">' + markdownConverter.makeHtml( content ) + '</div>' ).readingProgress( 'update' );
         };
 
         /**
          * @param {string} path
-         * @param {function} result
+         * @param {string} content
          */
         var updateStage = function( path, content ) {
             updateMenuBox( path );
@@ -162,6 +163,10 @@ define( [
             } );
         };
 
+        var buildIndexBox = function() {
+            elMainBox.readingProgress( { elProgressBox: opts.elIndexBox } );
+        };
+
         var buildLoader = function() {
             loader = $( '<div class="loader"></loader>' );
             body.append( loader );
@@ -176,6 +181,7 @@ define( [
 
         buildMenuBox();
         buildNavBox();
+        buildIndexBox();
         buildLoader();
 
         parsePath( getPathByHash( window.location.hash || '#home' ), updateStage );
