@@ -131,7 +131,7 @@ define( [
 
         parsePath( getPathByHash( window.location.hash || '#home' ), updateStage );
 
-        $( opts.elMenuBox + ',' + opts.elIndexBox + ',' + opts.elMainBox ).on( 'click', 'a', function() {
+        $( opts.elMenuBox + ',' + opts.elNavBox + ',' + opts.elMainBox ).on( 'click', 'a', function() {
             if ( this.hash ) {
                 parsePath( getPathByHash( this.hash ), updateStage );
             }
