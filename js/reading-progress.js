@@ -34,6 +34,10 @@ define( [ 'jquery' ], function( $ ) {
                     elProgressBox: elProgressBox
                 } );
 
+                $( document ).on( 'scroll', function() {
+                    console.log( $( 'html, body' ).scrollTop() );
+                } );
+
                 updateProgress( elContentBox );
 
             };
@@ -76,7 +80,7 @@ define( [ 'jquery' ], function( $ ) {
                     var html = '<ul>';
                     for ( var i = 0; i < data.length; i++ ) {
                         html += '<li>' +
-                                '<a href="#' + data[i].id + '">' + 
+                                '<a href="#' + data[i].id + '">' +
                                 '<span class="progress" data-target="' + data[i].id + '"><span></span></span>' +
                                 '<span class="title">' + data[i].title + '</span></a>';
                         if ( data[i].children && data[i].children.length > 0 ) {
