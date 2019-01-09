@@ -1,6 +1,7 @@
 define( [
     'jquery',
-    'markdown'
+    'markdown',
+    'scrollbar'
 ], function( $, markdown ) {
 
     /**
@@ -100,13 +101,17 @@ define( [
          * @param {function} result
          */
         var updateStage = function( path, content ) {
-            console.log( path );
             updateMainBox( content );
         };
 
         var parsePath = createPromiseCaches( function( path, defer ) {
             $.get( 'data/' + path + '.md' ).then( defer.resolve, defer.reject );
         } );
+
+        var buildNavBox = function() {
+            elNavBox.append( '<div class="box"></div>' ).mCustomScrollbar( {theme: 'minimal-dark'} );
+            elNavBox = elNavBox.find( '.box' );
+        };
 
         var buildMenuBox = function() {
             var html = '<ul>';
@@ -127,6 +132,7 @@ define( [
         };
 
         buildMenuBox();
+        buildNavBox();
 
         parsePath( getPathByHash( window.location.hash || '#home' ), updateStage );
 
