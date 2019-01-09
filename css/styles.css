@@ -46,7 +46,6 @@ body > .footer-wrapper .footer .copyright { font-size:12px; text-align:right; }
 .nav-menu .box > ul > li li > a > span { color:#555; font-style:italic; }
 .nav-menu .box > ul > li li > a:hover { background:#e5f8f9; }
 
-
 /**
  * Index menu
  */
@@ -69,3 +68,10 @@ body > .footer-wrapper .footer .copyright { font-size:12px; text-align:right; }
 .markdown table {}
 .markdown table thead th {}
 .markdown table tbody td {}
+
+/**
+ * Loader
+ */
+body > .loader { bottom:0; left:0; position:fixed; right:0; top:0; z-index:9999; }
+body > .loader:before { background:#fff; bottom:0; content:''; left:0; opacity:.6; position:absolute; right:0; top:0; }
+body > .loader:after { background:url(../images/loading.gif) center center no-repeat; content:''; height:50px; left:calc( 50% - 64px ); position:absolute; top:35%; width:64px; }

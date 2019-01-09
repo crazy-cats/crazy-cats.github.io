@@ -47,12 +47,22 @@ define( [
             githubRepository: null
         }, options );
 
+        var body = $( 'body' );
         var elMenuBox = $( opts.elMenuBox );
         var elNavBox = $( opts.elNavBox );
         var elMainBox = $( opts.elMainBox );
         var elIndexBox = $( opts.elIndexBox );
+        var loader;
 
         var markdownConverter = new markdown.Converter();
+
+        var loading = function( flag ) {
+            if ( flag === false ) {
+                loader.hide();
+            } else {
+                loader.show();
+            }
+        };
 
         /**
          * @param {string} hash
@@ -105,7 +115,10 @@ define( [
         };
 
         var parsePath = createPromiseCaches( function( path, defer ) {
-            $.get( 'data/' + path + '.md' ).then( defer.resolve, defer.reject );
+            loading( true );
+            $.get( 'data/' + path + '.md' ).then( defer.resolve, defer.reject ).always( function() {
+                loading( false );
+            } );
         } );
 
         var buildNavBox = function() {
@@ -131,8 +144,14 @@ define( [
             } );
         };
 
+        var buildLoader = function() {
+            loader = $( '<div class="loader"></loader>' );
+            body.append( loader );
+        };
+
         buildMenuBox();
         buildNavBox();
+        buildLoader();
 
         parsePath( getPathByHash( window.location.hash || '#home' ), updateStage );
 
