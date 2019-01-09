@@ -1,22 +1,22 @@
 define( [
     'jquery',
     'markdown'
-], function( $ ) {
+], function( $, markdown ) {
 
     /**
      * @param {function} requestFunction A function with `path` and `defer` parameters
-     * @return {function} A function with `path` and `callback` parameters
+     * @return {function} A function with `key` and `callback` parameters
      */
     var createPromiseCaches = function( requestFunction ) {
         var promiseCaches = {};
-        return function( path, callback ) {
-            if ( !promiseCaches[ path ] ) {
-                promiseCaches[ path ] = $.Deferred( function( defer ) {
-                    requestFunction( path, defer );
+        return function( key, callback ) {
+            if ( !promiseCaches[ key ] ) {
+                promiseCaches[ key ] = $.Deferred( function( defer ) {
+                    requestFunction( key, defer );
                 } ).promise();
             }
-            return promiseCaches[ path ].done( function( response ) {
-                callback( path, response );
+            return promiseCaches[ key ].done( function( response ) {
+                callback( key, response );
             } );
         };
     };
@@ -25,7 +25,7 @@ define( [
      * @param {string} str
      * @return {string}
      */
-    var encodeAttr = function( str ) {
+    var encodeHtml = function( str ) {
         return str.replace( /&/g, '&amp;' )
                 .replace( /</g, '&lt;' )
                 .replace( />/g, '&gt;' )
@@ -49,10 +49,7 @@ define( [
         var elIndexBox = $( opts.elIndexBox );
         var elMainBox = $( opts.elMainBox );
 
-        /**
-         * { xxx: { title: xxx, children: {  ...  } } }
-         */
-        var data = {};
+        var markdownConverter = new markdown.Converter();
 
         /**
          * @param {string} hash
@@ -69,7 +66,7 @@ define( [
         var getIndexBoxHtml = function( data ) {
             var html = '';
             for ( var i = 0; i < data.length; i++ ) {
-                html += '<li class="item">';
+                html += '<li>';
                 if ( data[i].children && data[i].children.length > 0 ) {
                     html += '<a href="javascript:;"><span>' + data[i].title + '</span></a>' +
                             '<ul>' + getIndexBoxHtml( data[i].children ) + '</ul>';
@@ -81,11 +78,18 @@ define( [
             return html;
         };
 
+        /**
+         * @param {object} data
+         */
         var updateIndexBox = function( data ) {
             elIndexBox.html( getIndexBoxHtml( data ) );
         };
 
-        var updateMainBox = function( path ) {
+        /**
+         * @param {string} content
+         */
+        var updateMainBox = function( content ) {
+            elMainBox.html( '<div class="markdown">' + markdownConverter.makeHtml( content ) + '</div>' );
         };
 
         /**
@@ -93,15 +97,11 @@ define( [
          * @param {function} result
          */
         var updateStage = function( path, result ) {
-            //updateIndexBox( path );
-            //updateMainBox( path );
-            console.log( path );
-            console.log( result );
+            updateMainBox( result );
         };
 
-        var updatePath = createPromiseCaches( function( path, defer ) {
-            var url = opts.githubApiUrl + '/repos/' + opts.githubOwner + '/' + opts.githubRepository + '/contents/data/' + path + '.md';
-            $.getJSON( url ).then( defer.resolve, defer.reject );
+        var parsePath = createPromiseCaches( function( path, defer ) {
+            $.get( 'data/' + path + '.md' ).then( defer.resolve, defer.reject );
         } );
 
         var buildMenuBox = function() {
@@ -109,21 +109,30 @@ define( [
             for ( var i = 0; i < opts.config.length; i++ ) {
                 html += '<li><a';
                 if ( opts.config[i].children ) {
-                    html += ' data-children="' + encodeAttr( JSON.stringify( opts.config[i].children ) ) + '"';
+                    html += ' data-children="' + encodeHtml( JSON.stringify( opts.config[i].children ) ) + '"';
                 }
                 html += ' href="' + (opts.config[i].href ? opts.config[i].href : 'javascript:;') + '"><span>' + opts.config[i].title + '</span></a></li>';
             }
             html += '</ul>';
             elMenuBox.html( html ).on( 'click', 'a', function() {
-                var children = $( this ).data( 'children' );
+                var el = $( this );
+                el.closest( 'li' ).addClass( 'current' ).siblings().removeClass( 'current' );
+                var children = el.data( 'children' );
                 if ( children ) {
                     updateIndexBox( children );
                 }
             } );
         };
+
         buildMenuBox();
 
-        updatePath( getPathByHash( window.location.hash ), updateStage );
+        parsePath( getPathByHash( window.location.hash || '#home' ), updateStage );
+
+        $( opts.elMenuBox + ',' + opts.elIndexBox + ',' + opts.elMainBox ).on( 'click', 'a', function() {
+            if ( this.hash ) {
+                parsePath( getPathByHash( this.hash ), updateStage );
+            }
+        } );
 
     };
 
