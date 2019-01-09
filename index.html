@@ -21,15 +21,18 @@
     <body>
         <div class="wrapper header-wrapper">
             <div class="header">
-                <div class="logo">
-                    CrazyCat PHP Platform
-                </div>
+                <div class="logo">CrazyCat PHP Platform</div>
                 <div class="main-menu"></div>
             </div>
         </div>
         <div class="wrapper main-wrapper">
-            <div class="left"></div>
-            <div class="main"></div>
+            <div class="left">
+                <div class="nav-menu"></div>
+            </div>
+            <div class="main">
+                <div class="main-contents"></div>
+                <div class="index-menu"></div>
+            </div>
         </div>
         <div class="wrapper footer-wrapper">
             <div class="footer">
@@ -41,8 +44,9 @@
                 renderer( {
                     config: JSON.parse( config ),
                     elMenuBox: '.main-menu',
-                    elIndexBox: '.main-wrapper > .left',
-                    elMainBox: '.main-wrapper > .main',
+                    elNavBox: '.main-wrapper > .left > .nav-menu',
+                    elMainBox: '.main-wrapper > .main > .main-contents',
+                    elIndexBox: '.main-wrapper > .main > .index-menu',
                     githubOwner: 'crazy-cats',
                     githubRepository: 'crazy-cats.github.io'
                 } );

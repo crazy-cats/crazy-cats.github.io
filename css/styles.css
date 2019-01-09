@@ -14,7 +14,10 @@ body > .header-wrapper .header:after { clear:both; content:''; display:table; he
 body > .main-wrapper { position:relative; z-index:2; }
 body > .main-wrapper > .left { background:#F1F1F1; height:100%; left:0; position:fixed; top:50px; width:280px; }
 body > .main-wrapper > .main { margin:50px 0 0 280px; }
+body > .main-wrapper > .main .main-contents {}
 body > .footer-wrapper { margin:0 0 0 280px; position:relative; z-index:3; }
+body > .footer-wrapper .footer {}
+body > .footer-wrapper .footer .copyright {}
 
 /**
  * Main menu
@@ -26,3 +29,34 @@ body > .footer-wrapper { margin:0 0 0 280px; position:relative; z-index:3; }
 .main-menu > ul > li { float:left; } /* level 1 */
 .main-menu > ul > li > a { padding:5px 10px; }
 .main-menu > ul:after { clear:both; content:''; display:table; height:0; }
+
+/**
+ * Left menu
+ */
+.nav-menu > ul li { list-style:none; position:relative; }
+.nav-menu > ul li a { display:block; text-decoration:none; }
+.nav-menu > ul li a span { display:block; }
+.nav-menu > ul li ul { position:absolute; }
+
+/**
+ * Index menu
+ */
+.index-menu {}
+
+/**
+ * Markdown contents
+ */
+.markdown {}
+.markdown h1 {}
+.markdown h2 {}
+.markdown h3 {}
+.markdown p {}
+.markdown code {}
+.markdown pre code {}
+.markdown ul {}
+.markdown ul li {}
+.markdown ol {}
+.markdown ol li {}
+.markdown table {}
+.markdown table thead th {}
+.markdown table tbody td {}

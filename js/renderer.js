@@ -38,16 +38,18 @@ define( [
         var opts = $.extend( true, {
             config: {},
             elMenuBox: null,
-            elIndexBox: null,
+            elNavBox: null,
             elMainBox: null,
+            elIndexBox: null,
             githubApiUrl: 'https://api.github.com',
             githubOwner: null,
             githubRepository: null
         }, options );
 
         var elMenuBox = $( opts.elMenuBox );
-        var elIndexBox = $( opts.elIndexBox );
+        var elNavBox = $( opts.elNavBox );
         var elMainBox = $( opts.elMainBox );
+        var elIndexBox = $( opts.elIndexBox );
 
         var markdownConverter = new markdown.Converter();
 
@@ -64,17 +66,18 @@ define( [
          * @return {string} HTML
          */
         var getIndexBoxHtml = function( data ) {
-            var html = '';
+            var html = '<ul>';
             for ( var i = 0; i < data.length; i++ ) {
                 html += '<li>';
                 if ( data[i].children && data[i].children.length > 0 ) {
                     html += '<a href="javascript:;"><span>' + data[i].title + '</span></a>' +
-                            '<ul>' + getIndexBoxHtml( data[i].children ) + '</ul>';
+                            getIndexBoxHtml( data[i].children );
                 } else {
                     html += '<a href="' + data[i].href + '"><span>' + data[i].title + '</span></a>';
                 }
                 html += '</li>';
             }
+            html += '</ul>';
             return html;
         };
 
@@ -82,7 +85,7 @@ define( [
          * @param {object} data
          */
         var updateIndexBox = function( data ) {
-            elIndexBox.html( getIndexBoxHtml( data ) );
+            elNavBox.html( getIndexBoxHtml( data ) );
         };
 
         /**
