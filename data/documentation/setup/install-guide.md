@@ -21,4 +21,4 @@ composer require crazycat/module-url-rewrite
 
 Composer is a tool for dependency management in PHP. It helps to install and update libraries and the related dependency which are used in your project.
 
-For more details please check https://getcomposer.org.
+For more details please check <https://getcomposer.org>.
