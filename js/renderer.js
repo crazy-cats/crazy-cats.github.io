@@ -125,6 +125,7 @@ define( [
          */
         var updateMainBox = function( content ) {
             elMainBox.html( '<div class="markdown">' + markdownConverter.makeHtml( content ) + '</div>' ).readingProgress( 'update' );
+            elMainBox.find( 'pre' ).mCustomScrollbar( {horizontalScroll: true, theme: 'minimal-dark'} );
         };
 
         /**
@@ -144,19 +145,26 @@ define( [
 
         var buildMenuBox = function() {
             var elMenuBoxWrapper = elMenuBox;
-            elMenuBox.append( '<div class="box"></div>' ).mCustomScrollbar( {theme: 'minimal-dark'} ).append( '<div class="toggler"></div>' );
-            elMenuBox.find( '.toggler' ).on( 'click', function() {
-                elMenuBoxWrapper.toggleClass( 'active' );
-            } );
+            elMenuBox.append( '<div class="box"></div>' )
+                    .mCustomScrollbar( {theme: 'minimal-dark'} )
+                    .append( '<div class="toggler"></div>' );
             elMenuBox = elMenuBox.find( '.box' );
-            elMenuBox.html( getMenuHtml( 'main-menu', opts.config ) ).on( 'click', 'a', function() {
+            elMenuBox.html( getMenuHtml( 'main-menu', opts.config ) ).on( 'click', 'a', function( evt ) {
+                evt.stopPropagation();
                 var el = $( this );
                 var children = el.data( 'children' );
                 if ( children ) {
                     updateNavBox( el.data( 'identifier' ) );
                 } else {
                     elMenuBoxWrapper.removeClass( 'active' );
+                    parsePath( getPathByHash( this.hash ), updateStage );
                 }
+            } );
+            elMenuBoxWrapper.on( 'click', function() {
+                elMenuBoxWrapper.removeClass( 'active' );
+            } ).find( '.toggler' ).on( 'click', function( evt ) {
+                evt.stopPropagation();
+                elMenuBoxWrapper.toggleClass( 'active' );
             } );
         };
 
@@ -186,7 +194,7 @@ define( [
 
         parsePath( getPathByHash( window.location.hash || '#home' ), updateStage );
 
-        $( opts.elMenuBox + ',' + opts.elNavBox + ',' + opts.elMainBox ).on( 'click', 'a', function() {
+        $( opts.elNavBox + ',' + opts.elMainBox ).on( 'click', 'a', function() {
             if ( this.hash ) {
                 parsePath( getPathByHash( this.hash ), updateStage );
             }
