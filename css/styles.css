@@ -1,3 +1,27 @@
+@font-face {
+    font-family: 'Awesome Solid';
+    font-style: normal;
+    font-weight: 900;
+    src: url(../fonts/fa-solid-900.eot);
+    src: url(../fonts/fa-solid-900.eot?#iefix) format('embedded-opentype'),
+        url(../fonts/fa-solid-900.woff2) format('woff2'),
+        url(../fonts/fa-solid-900.woff) format('woff'),
+        url(../fonts/fa-solid-900.ttf) format('truetype'),
+        url(../fonts/fa-solid-900.svg#fontawesome) format('svg');
+}
+
+@font-face {
+    font-family: 'Awesome Brands';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/fa-brands-400.eot);
+    src: url(../fonts/fa-brands-400.eot?#iefix) format('embedded-opentype'),
+        url(../fonts/fa-brands-400.woff2) format('woff2'),
+        url(../fonts/fa-brands-400.woff) format('woff'),
+        url(../fonts/fa-brands-400.ttf) format('truetype'),
+        url(../fonts/fa-brands-400.svg#fontawesome) format('svg');
+}
+
 * { box-sizing:border-box; margin:0; outline:none; padding:0; }
 
 body { background:#fff; color:#555; font:16px/24px Consolas, Arial, Helvetica, sans-serif; }
@@ -99,6 +123,7 @@ body > .loader:after { background:url(../images/loading.gif) center center no-re
 }
 
 @media only screen and (max-width:768px) {
+    body > .header-wrapper .header .logo { width:calc( 100% - 54px ); }
     body > .header-wrapper .header .main-menu { height:100%; position:fixed; right:-100%; top:55px; width:100%; }
     body > .header-wrapper .header .main-menu.active { right:0; }
     body > .main-wrapper > .left { display:none; }
@@ -106,7 +131,8 @@ body > .loader:after { background:url(../images/loading.gif) center center no-re
     body > .footer-wrapper { margin:0; }
 
     .main-menu:before { background:#000; content:''; display:block; height:100%; left:0; opacity:.6; position:absolute; top:0; width:100%; }
-    .main-menu .toggler { background:no-repeat; display:block; height:54px; position:fixed; right:0; top:0; width:54px; }
+    .main-menu .toggler { background:no-repeat; display:block; height:54px; position:fixed; right:0; text-align:center; top:0; width:54px; }
+    .main-menu .toggler:before {  color:#a8acb1; content:'\f0c9'; font:28px/54px 'Awesome Solid'; }
     .main-menu .mCustomScrollBox { background:#f1f1f1; position:absolute; right:-100%; transition:.6s; width:calc( 100% - 50px ); }
     .main-menu.active .mCustomScrollBox { right:0; }
     .main-menu .box > ul > li { float:none; } /* level 1 */
