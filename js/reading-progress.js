@@ -91,8 +91,6 @@ define( [
                     return false;
                 } );
 
-                console.log( elProgressBox );
-
                 elContentBox.data( 'reading-progress', {
                     elProgressBox: elProgressBox,
                     onScroll: updateProgressValue
