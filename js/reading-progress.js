@@ -1,4 +1,7 @@
-define( [ 'jquery' ], function( $ ) {
+define( [
+    'jquery',
+    'scrollbar'
+], function( $ ) {
 
     /**
      * @return {string} uuid
@@ -52,7 +55,7 @@ define( [ 'jquery' ], function( $ ) {
                     return nextItem.offset().top - el.offset().top;
                 };
 
-                var updateProgressValue = function() {
+                var updateProgressValue = function( elProgressBox ) {
                     var scrollTop = $( 'html, body' ).scrollTop();
                     var maxScrollTop = $( document ).outerHeight() - $( window ).height();
                     elProgressBox.find( '.progress' ).each( function() {
@@ -62,26 +65,42 @@ define( [ 'jquery' ], function( $ ) {
                         var current = scrollTop + opts.startTop;
                         var start = target.offset().top;
                         var end = target.offset().top + height;
-                        var percentage = (maxScrollTop > scrollTop) ? (
-                                (current > start && current < end) ?
-                                ((current - start) / height) :
-                                (current < start ? 0 : 1)) :
-                                1;
+
+                        var percentage;
+                        if ( maxScrollTop > scrollTop ) {
+                            if ( current > start && current < end ) {
+                                percentage = (current - start) / height;
+                                el.closest( 'li' ).addClass( 'current' );
+                            } else {
+                                percentage = current < start ? 0 : 1;
+                                el.closest( 'li' ).removeClass( 'current' );
+                            }
+                        } else {
+                            percentage = 1;
+                            el.closest( 'li' ).removeClass( 'current' );
+                        }
+
                         el.find( 'span' ).css( 'width', percentage * 100 + '%' );
                     } );
                 };
 
+                elProgressBox.append( '<div class="box"></div>' ).mCustomScrollbar( {theme: 'minimal-dark'} );
+                elProgressBox = elProgressBox.find( '.box' );
                 elProgressBox.on( 'click', 'a', function() {
                     $( 'html, body' ).animate( {'scrollTop': elContentBox.find( this.hash ).offset().top - elContentBox.offset().top} );
                     return false;
                 } );
+
+                console.log( elProgressBox );
 
                 elContentBox.data( 'reading-progress', {
                     elProgressBox: elProgressBox,
                     onScroll: updateProgressValue
                 } );
 
-                $( document ).on( 'scroll', updateProgressValue );
+                $( document ).on( 'scroll', function() {
+                    updateProgressValue( elProgressBox );
+                } );
 
                 updateProgress( elContentBox );
 
@@ -143,7 +162,7 @@ define( [ 'jquery' ], function( $ ) {
                 };
 
                 rebuildProgressBox();
-                updateProgressValue();
+                updateProgressValue( elProgressBox );
 
             };
 
