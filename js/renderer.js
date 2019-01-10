@@ -164,7 +164,10 @@ define( [
         };
 
         var buildIndexBox = function() {
-            elMainBox.readingProgress( { elProgressBox: opts.elIndexBox } );
+            elMainBox.readingProgress( {
+                elProgressBox: opts.elIndexBox,
+                startTop: body.find( '> .header-wrapper' ).outerHeight()
+            } );
         };
 
         var buildLoader = function() {

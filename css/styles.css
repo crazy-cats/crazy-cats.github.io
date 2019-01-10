@@ -56,15 +56,15 @@ body > .footer-wrapper .footer .copyright { font-size:12px; text-align:right; }
 .index-menu ul li a { border-bottom:1px solid #e2e7eb; display:block; text-decoration:none; }
 .index-menu ul li a span { display:block; }
 .index-menu ul li a span.title { color:#555; padding:5px 8px 8px; }
-.index-menu ul li a span.progress { width:100%; }
-.index-menu ul li a span.progress span { background:#e5f8f9; height:5px; }
+.index-menu ul li a span.progress { background:#f1f1f1; height:5px; width:100%; }
+.index-menu ul li a span.progress span { background:#e5f8f9; height:100%; }
 
 /**
  * Markdown contents
  */
-.markdown h1 { font-size:2rem; font-weight:normal; line-height:2.4rem; margin:2rem 0 1.2rem; }
-.markdown h2 { font-size:1.5rem; font-weight:normal; line-height:2rem; margin:1.5rem 0 1rem; }
-.markdown h3 { font-size:1rem; font-weight:normal; line-height:1.5rem; margin:1rem 0 1rem; }
+.markdown h1 { font-size:2rem; font-weight:normal; line-height:2.4rem; padding:2rem 0 1.2rem; }
+.markdown h2 { font-size:1.5rem; font-weight:normal; line-height:2rem; padding:1.5rem 0 1rem; }
+.markdown h3 { font-size:1rem; font-weight:normal; line-height:1.5rem; padding:1rem 0 1rem; }
 .markdown p { margin:0 0 1rem; }
 .markdown code {}
 .markdown pre { background:#e5f8f9; margin:0 0 1rem; padding:10px 20px; }
