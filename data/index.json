@@ -23,6 +23,22 @@
                         "href": "#documentation/setup/install-guide"
                     }
                 ]
+            },
+            {
+                "name": "documentation/composition",
+                "title": "Composition",
+                "children": [
+                    {
+                        "name": "documentation/composition/file-structure",
+                        "title": "File Structure",
+                        "href": "#documentation/composition/file-structure"
+                    },
+                    {
+                        "name": "documentation/composition/concepts",
+                        "title": "Concepts",
+                        "href": "#documentation/composition/concepts"
+                    }
+                ]
             }
         ]
     }

@@ -104,7 +104,7 @@ body > .footer-wrapper .footer .copyright { font-size:12px; text-align:right; }
 .markdown p { margin:0 0 15px; }
 .markdown code { background:#e5f8f9; font-family:Consolas; padding:5px 10px; }
 .markdown pre { background:#e5f8f9; margin:0 0 1rem; padding:10px 20px; }
-.markdown pre code { padding:0 0 4px; }
+.markdown pre code { display:block; padding:0 0 5px; }
 .markdown ul { padding:0 0 0 22px; }
 .markdown ul li { padding:0 0 5px; }
 .markdown ol { padding:0 0 0 22px; }
