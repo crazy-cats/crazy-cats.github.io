@@ -17,6 +17,4 @@ PHP 5.6 or 7.0 with these extensions:
 
 ## Composer
 
-Composer is a tool for dependency management in PHP. It helps to install and update libraries and the related dependency which are used in your project.
-
-For more details please check <https://getcomposer.org>.
+Latest version of Composer.

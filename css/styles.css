@@ -51,10 +51,11 @@ body > .footer-wrapper .footer .copyright { font-size:12px; text-align:right; }
 .main-menu .box > ul li a { display:block; text-decoration:none; }
 .main-menu .box > ul li a span { display:block; }
 .main-menu .box > ul:after { clear:both; content:''; display:table; height:0; }
-.main-menu .box > ul > li { float:left; } /* level 1 */
-.main-menu .box > ul > li > a > span { color:#555; font-style:italic; padding:15px; }
+.main-menu .box > ul > li { float:left; margin:0 15px; } /* level 1 */
+.main-menu .box > ul > li > a > span { border-bottom:3px solid #f1f1f1; color:#999; font-style:italic; padding:15px 0; transition:.6s; }
+.main-menu .box > ul > li > a:hover > span { border-bottom:3px solid #999; }
 .main-menu .box > ul > li.active > a > span,
-.main-menu .box > ul > li.current > a > span { color:#000; font-style:normal; }
+.main-menu .box > ul > li.current > a > span { border-bottom:3px solid #999; color:#000; }
 .main-menu .box > ul > li ul { display:none; } /* level n */
 
 /**
@@ -137,10 +138,13 @@ body > .loader:after { background:url(../images/loading.gif) center center no-re
     .main-menu .toggler:before {  color:#a8acb1; content:'\f0c9'; font:28px/54px 'Awesome Solid'; }
     .main-menu .mCustomScrollBox { background:#f1f1f1; position:absolute; right:-100%; transition:.6s; width:calc( 100% - 50px ); }
     .main-menu.active .mCustomScrollBox { right:0; }
-    .main-menu .box > ul > li { float:none; } /* level 1 */
+    .main-menu .box > ul > li { float:none; margin:0; } /* level 1 */
     .main-menu .box > ul > li > a { background:#fff; border-bottom:1px solid #e2e7eb; }
     .main-menu .box > ul > li.current > a { background:#e5f8f9; }
     .main-menu .box > ul > li > a > span { color:#555; font-style:italic; padding:8px 15px; }
+    .main-menu .box > ul > li > a > span,
+    .main-menu .box > ul > li.active > a > span,
+    .main-menu .box > ul > li.current > a > span { border:0; }
     .main-menu .box > ul > li.active > ul { display:block; } /* level 2 */
     .main-menu .box > ul > li li > a { background:#fff; border-bottom:1px solid #e2e7eb; }
     .main-menu .box > ul > li li.current > a { background:#e5f8f9; }
