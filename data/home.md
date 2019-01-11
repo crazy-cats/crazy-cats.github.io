@@ -13,7 +13,7 @@ CrazyCat is a PHP framework based on Composer.
 
 Composer is a tool for dependency management in PHP. It helps us to install and update libraries and the related dependency which are used in the project.
 
-We can make focus on the business logic while using a number of libraries, instead of wasting time on processing the dependencies and conflicts.
+We can focus on the business logic while using a number of libraries, instead of wasting time on processing the dependencies and conflicts.
 
 For more details please check <https://getcomposer.org>.
 

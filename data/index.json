@@ -21,6 +21,11 @@
                         "name": "documentation/setup/install-guide",
                         "title": "Install Guide",
                         "href": "#documentation/setup/install-guide"
+                    },
+                    {
+                        "name": "documentation/setup/configuration",
+                        "title": "Configuration",
+                        "href": "#documentation/setup/configuration"
                     }
                 ]
             },

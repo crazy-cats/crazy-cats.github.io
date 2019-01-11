@@ -1,5 +1,6 @@
 # Area
 
+- global
 - api
 - frontend
 - backend
