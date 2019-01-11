@@ -87,7 +87,7 @@ define( [
                 elProgressBox.append( '<div class="box"></div>' ).mCustomScrollbar( {theme: 'minimal-dark'} );
                 elProgressBox = elProgressBox.find( '.box' );
                 elProgressBox.on( 'click', 'a', function() {
-                    $( 'html, body' ).animate( {'scrollTop': elContentBox.find( this.hash ).offset().top - elContentBox.offset().top} );
+                    $( 'html, body' ).animate( {'scrollTop': Math.ceil( elContentBox.find( this.hash ).offset().top - elContentBox.offset().top ) + 10} );
                     return false;
                 } );
 
