@@ -12,6 +12,7 @@
 |       +- frontend
 |           +- theme_name
 +- bin
+    +- crazycat
 +- pub
 |   +- static
 |       +- backend
