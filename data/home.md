@@ -24,3 +24,7 @@ In a single entry point framework, we always use some singletons such as event m
 
 It is more simple to get a correct singleton, and more flexible to override an existing singleton with Dependency Injection.
 
+
+# How to get the Code
+
+Follow <https://github.com/crazy-cats/instance> to download and get related information.
