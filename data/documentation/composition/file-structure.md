@@ -12,18 +12,26 @@
 |       +- frontend
 |           +- theme_name
 +- bin
-    +- crazycat
+|   +- crazycat
 +- pub
 |   +- static
-|       +- backend
-|       |   +- theme_name
-|       +- frontend
-|           +- theme_name
+|   |   +- backend
+|   |   |   +- theme_name
+|   |   +- frontend
+|   |   |   +- theme_name
+|   |   +- .htaccess
+|   +- .htaccess
+|   +- index.php
+|   +- static.php
 +- var
 |   +- cache
 |   +- log
 |   +- session
 +- vendor
++- composer.json
++- definitions
++- index.php
++- LICENSE
 ```
 
 
