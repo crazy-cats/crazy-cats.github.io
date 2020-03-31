@@ -40,6 +40,7 @@ body > .main-wrapper > .left { background:#f7fcfd; border-right:1px solid #d3f0f
 body > .main-wrapper > .main { margin:50px 0 0 280px; padding:5px 0 70px 40px; width:calc( 100% - 570px ); }
 body > .main-wrapper > .main .main-contents {}
 body > .footer-wrapper { margin:0 0 0 280px; position:relative; z-index:1; }
+body > .footer-wrapper a { color:#379aa0; text-decoration:none; }
 body > .footer-wrapper .footer { padding:20px 20px 30px; }
 body > .footer-wrapper .footer .copyright { font-size:12px; text-align:right; }
 
